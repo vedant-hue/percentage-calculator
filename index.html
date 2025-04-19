@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Card Calculator</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Report Card Calculator</h1>
+
+    <div id="overall-percentage-section">
+        <h2>Calculate Overall Percentage (All Subjects)</h2>
+        <form id="overall-form">
+            <label for="english">English Marks:</label>
+            <input type="number" id="english" name="english" required><br><br>
+
+            <label for="math">Math Marks:</label>
+            <input type="number" id="math" name="math" required><br><br>
+
+            <label for="science">Science Marks:</label>
+            <input type="number" id="science" name="science" required><br><br>
+
+            <label for="ssc">Social Science Marks:</label>
+            <input type="number" id="ssc" name="ssc" required><br><br>
+
+            <label for="kannada">Kannada Marks:</label>
+            <input type="number" id="kannada" name="kannada" required><br><br>
+
+            <label for="hindi">Hindi Marks:</label>
+            <input type="number" id="hindi" name="hindi" required><br><br>
+
+            <button type="button" onclick="calculateOverallPercentage()">Calculate Overall Percentage</button>
+        </form>
+        <div id="overall-result"></div>
+    </div>
+
+    <hr>
+
+    <div id="subject-percentage-section">
+        <h2>Calculate Subject Percentage (Through the Year)</h2>
+        <form id="subject-form">
+            <label for="subject-select-year">Select Subject:</label>
+            <select id="subject-select-year" name="subject-select-year">
+                <option value="english">English</option>
+                <option value="math">Math</option>
+                <option value="science">Science</option>
+                <option value="ssc">Social Science</option>
+                <option value="kannada">Kannada</option>
+                <option value="hindi">Hindi</option>
+            </select><br><br>
+
+            <label for="pt1">PT1 Marks (out of 10):</label>
+            <input type="number" id="pt1" name="pt1"><br><br>
+
+            <label for="hy">Half-Yearly Marks (out of 60):</label>
+            <input type="number" id="hy" name="hy"><br><br>
+
+            <label for="pt2">PT2 Marks (out of 10):</label>
+            <input type="number" id="pt2" name="pt2"><br><br>
+
+            <label for="ae">Annual Exam Marks (out of 80):</label>
+            <input type="number" id="ae" name="ae"><br><br>
+
+            <button type="button" onclick="calculateSubjectPercentage()">Calculate Subject Percentage</button>
+        </form>
+        <div id="subject-result"></div>
+    </div>
+
+    <hr>
+
+    <div id="term-percentage-section">
+        <h2>Calculate Overall Percentage (Term-wise for Graph)</h2>
+        <form id="term-form">
+            <h3>Term 1 Marks (Out of 80)</h3>
+            <label for="english-term1">English:</label> <input type="number" id="english-term1" name="english-term1"><br>
+            <label for="math-term1">Math:</label> <input type="number" id="math-term1" name="math-term1"><br>
+            <label for="science-term1">Science:</label> <input type="number" id="science-term1" name="science-term1"><br>
+            <label for="ssc-term1">SSC:</label> <input type="number" id="ssc-term1" name="ssc-term1"><br>
+            <label for="kannada-term1">Kannada:</label> <input type="number" id="kannada-term1" name="kannada-term1"><br>
+            <label for="hindi-term1">Hindi:</label> <input type="number" id="hindi-term1" name="hindi-term1"><br><br>
+
+            <h3>Term 1 MA (Out of 5) & SEA (Out of 5)</h3>
+            <label for="english-term1-ma">English MA:</label> <input type="number" id="english-term1-ma" name="english-term1-ma"><br>
+            <label for="english-term1-sea">English SEA:</label> <input type="number" id="english-term1-sea" name="english-term1-sea"><br>
+            <label for="math-term1-ma">Math MA:</label> <input type="number" id="math-term1-ma" name="math-term1-ma"><br>
+            <label for="math-term1-sea">Math SEA:</label> <input type="number" id="math-term1-sea" name="math-term1-sea"><br>
+            <label for="science-term1-ma">Science MA:</label> <input type="number" id="science-term1-ma" name="science-term1-ma"><br>
+            <label for="science-term1-sea">Science SEA:</label> <input type="number" id="science-term1-sea" name="science-term1-sea"><br>
+            <label for="ssc-term1-ma">SSC MA:</label> <input type="number" id="ssc-term1-ma" name="ssc-term1-ma"><br>
+            <label for="ssc-term1-sea">SSC SEA:</label> <input type="number" id="ssc-term1-sea" name="ssc-term1-sea"><br>
+            <label for="kannada-term1-ma">Kannada MA:</label> <input type="number" id="kannada-term1-ma" name="kannada-term1-ma"><br>
+            <label for="kannada-term1-sea">Kannada SEA:</label> <input type="number" id="kannada-term1-sea" name="kannada-term1-sea"><br>
+            <label for="hindi-term1-ma">Hindi MA:</label> <input type="number" id="hindi-term1-ma" name="hindi-term1-ma"><br>
+            <label for="hindi-term1-sea">Hindi SEA:</label> <input type="number" id="hindi-term1-sea" name="hindi-term1-sea"><br><br>
+
+            <h3>Term 2 Marks (Out of 80)</h3>
+            <label for="english-term2">English:</label> <input type="number" id="english-term2" name="english-term2"><br>
+            <label for="math-term2">Math:</label> <input type="number" id="math-term2" name="math-term2"><br>
+            <label for="science-term2">Science:</label> <input type="number" id="science-term2" name="science-term2"><br>
+            <label for="ssc-term2">SSC:</label> <input type="number" id="ssc-term2" name="ssc-term2"><br>
+            <label for="kannada-term2">Kannada:</label> <input type="number" id="kannada-term2" name="kannada-term2"><br>
+            <label for="hindi-term2">Hindi:</label> <input type="number" id="hindi-term2" name="hindi-term2"><br><br>
+
+            <h3>Term 2 MA (Out of 5) & SEA (Out of 5)</h3>
+            <label for="english-term2-ma">English MA:</label> <input type="number" id="english-term2-ma" name="english-term2-ma"><br>
+            <label for="english-term2-sea">English SEA:</label> <input type="number" id="english-term2-sea" name="english-term2-sea"><br>
+            <label for="math-term2-ma">Math MA:</label> <input type="number" id="math-term2-ma" name="math-term2-ma"><br>
+            <label for="math-term2-sea">Math SEA:</label> <input type="number" id="math-term2-sea" name="math-term2-sea"><br>
+            <label for="science-term2-ma">Science MA:</label> <input type="number" id="science-term2-ma" name="science-term2-ma"><br>
+            <label for="science-term2-sea">Science SEA:</label> <input type="number" id="science-term2-sea" name="science-term2-sea"><br>
+            <label for="ssc-term2-ma">SSC MA:</label> <input type="number" id="ssc-term2-ma" name="ssc-term2-ma"><br>
+            <label for="ssc-term2-sea">SSC SEA:</label> <input type="number" id="ssc-term2-sea" name="ssc-term2-sea"><br>
+            <label for="kannada-term2-ma">Kannada MA:</label> <input type="number" id="kannada-term2-ma" name="kannada-term2-ma"><br>
+            <label for="kannada-term2-sea">Kannada SEA:</label> <input type="number" id="kannada-term2-sea" name="kannada-term2-sea"><br>
+            <label for="hindi-term2-ma">Hindi MA:</label> <input type="number" id="hindi-term2-ma" name="hindi-term2-ma"><br>
+            <label for="hindi-term2-sea">Hindi SEA:</label> <input type="number" id="hindi-term2-sea" name="hindi-term2-sea"><br><br>
+
+            <button type="button" onclick="drawOverallWormGraph()">Show Overall Performance Graph</button>
+        </form>
+        <div id="term-result"></div>
+    </div>
+
+    <hr>
+
+    <div id="performance-graphs-section">
+        <h2>Performance Graphs</h2>
+
+        <h3>Overall Performance</h3>
+        <div id="overall-performance-graph">
+            <canvas id="overallWormGraph"></canvas>
+        </div>
+
+        <h3>Subject Performance</h3>
+        <label for="subject-graph-select">Select Subject:</label>
+        <select id="subject-graph-select" name="subject-graph-select">
+            <option value="english">English</option>
+            <option value="math">Math</option>
+            <option value="science">Science</option>
+            <option value="ssc">Social Science</option>
+            <option value="kannada">Kannada</option>
+            <option value="hindi">Hindi</option>
+        </select>
+        <button type="button" onclick="drawSubjectWormGraph()">Show Subject Performance Graph</button>
+        <div id="subject-performance-graph">
+            <canvas id="subjectWormGraph"></canvas>
+        </div>
+    </div>
+
+    <hr>
+
+    <div id="overall-averages-section">
+        <h2>Overall Averages</h2>
+        <button type="button" onclick="calculateAndDisplayOverallAverages()">Calculate Overall Averages</button>
+        <div id="overall-average-results"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
