@@ -12,7 +12,7 @@ function calculateOverallPercentage() {
     }
 
     const totalMarks = english + math + science + ssc + kannada + hindi;
-    const overallPercentage = (totalMarks / (6 * 80)) * 100; // Assuming overall is still based on the final exam weight
+    const overallPercentage = (totalMarks / (6 * 80)) * 100 + 0.000001; // Add a tiny value
 
     document.getElementById('overall-result').textContent = `Overall Percentage: ${overallPercentage.toFixed(2)}%`;
 }
